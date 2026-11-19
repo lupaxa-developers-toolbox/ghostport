@@ -8,9 +8,9 @@ class GhostPortError(Exception):
 
     exit_code = 1
 
-    def __init__(self, message: str) -> None:
+    def __init__(self, message: str, messages: list[str] | None = None) -> None:
         super().__init__(message)
-        self.messages = [message]
+        self.messages = list(messages) if messages else [message]
 
 
 class ConfigError(GhostPortError):
@@ -20,8 +20,7 @@ class ConfigError(GhostPortError):
 
     def __init__(self, messages: list[str]) -> None:
         text = "\n".join(messages) if messages else "Invalid configuration."
-        super().__init__(text)
-        self.messages = list(messages) or [text]
+        super().__init__(text, messages or [text])
 
 
 class UsageError(GhostPortError):
