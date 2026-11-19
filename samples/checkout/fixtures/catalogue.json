@@ -1,0 +1,6 @@
+{
+  "items": [
+    {"sku": "mug", "name": "Blue mug", "price": 12},
+    {"sku": "poster", "name": "Harbour poster", "price": 18}
+  ]
+}

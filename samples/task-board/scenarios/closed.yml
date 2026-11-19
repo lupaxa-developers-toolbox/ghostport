@@ -1,0 +1,9 @@
+scenarios:
+  - id: closed
+    description: The board rejects task lists
+    overrides:
+      - route: list-tasks
+        response:
+          status: 503
+          json:
+            error: closed

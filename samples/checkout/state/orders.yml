@@ -1,0 +1,9 @@
+state:
+  orders:
+    - id: "100"
+      sku: mug
+      qty: 1
+  audits:
+    type: collection
+    key: id
+    records: []

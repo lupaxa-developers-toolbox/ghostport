@@ -1,0 +1,9 @@
+state:
+  board:
+    type: value
+    value:
+      open: true
+  tasks:
+    - id: "1"
+      title: Write the guide
+      done: false

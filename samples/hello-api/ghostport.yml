@@ -1,0 +1,31 @@
+version: 1
+
+api:
+  name: hello-api
+  description: A small static API
+
+server:
+  host: 127.0.0.1
+  port: 8080
+
+management:
+  host: 127.0.0.1
+  port: 8081
+
+routes:
+  - id: health
+    method: GET
+    path: /health
+    response:
+      status: 200
+      json:
+        status: healthy
+
+  - id: get-user
+    method: GET
+    path: /users/{id}
+    response:
+      status: 200
+      json:
+        id: "{{ path.id | int }}"
+        name: Ada

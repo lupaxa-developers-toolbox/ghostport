@@ -1,0 +1,22 @@
+routes:
+  - id: catalogue
+    method: GET
+    path: /catalogue
+    response:
+      status: 200
+      file: fixtures/catalogue.json
+
+  - id: place-order
+    method: POST
+    path: /orders
+    action:
+      type: collection.create
+      resource: orders
+      input: "{{ body }}"
+
+  - id: list-orders
+    method: GET
+    path: /orders
+    action:
+      type: collection.list
+      resource: orders

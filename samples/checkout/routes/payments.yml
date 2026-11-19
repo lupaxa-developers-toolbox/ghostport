@@ -1,0 +1,29 @@
+routes:
+  - id: take-payment
+    method: POST
+    path: /payments
+    match:
+      headers:
+        x-shop: demo
+    after_sequence: error
+    exhaustion:
+      status: 410
+      json:
+        error: Sequence exhausted
+    sequence:
+      - status: 503
+        json:
+          error: busy
+      - status: 200
+        json:
+          paid: true
+
+  - id: record-audit
+    method: POST
+    path: /audit
+    behaviour:
+      failure_status: 503
+    action:
+      type: collection.create
+      resource: audits
+      input: "{{ body }}"

@@ -1,0 +1,40 @@
+version: 1
+
+api:
+  name: checkout
+  description: Catalogue fixtures, a payment sequence, and SQLite orders
+
+server:
+  host: 127.0.0.1
+  port: 8100
+
+management:
+  host: 127.0.0.1
+  port: 8101
+
+include:
+  routes:
+    - routes/catalogue.yml
+    - routes/payments.yml
+  state:
+    - state/orders.yml
+
+runtime:
+  scenario: normal
+  state:
+    persistence: sqlite
+    path: .ghostport/state.sqlite
+  history:
+    enabled: true
+    max_entries: 1000
+    capture_bodies: true
+    max_body_bytes: 65536
+    redact_fields:
+      - card
+  unmatched:
+    status: 404
+    json:
+      error: No checkout route matched
+  behaviour:
+    default_delay_ms: 0
+    random_seed: 12345

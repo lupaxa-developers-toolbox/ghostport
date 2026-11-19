@@ -1,0 +1,56 @@
+routes:
+  - id: show-board
+    method: GET
+    path: /board
+    action:
+      type: state.get
+      resource: board
+
+  - id: set-board
+    method: PUT
+    path: /board
+    action:
+      type: state.set
+      resource: board
+      input: "{{ body }}"
+
+  - id: list-tasks
+    method: GET
+    path: /tasks
+    action:
+      type: collection.list
+      resource: tasks
+
+  - id: get-task
+    method: GET
+    path: /tasks/{id}
+    action:
+      type: collection.get
+      resource: tasks
+      key: "{{ path.id }}"
+
+  - id: create-task
+    method: POST
+    path: /tasks
+    action:
+      type: collection.create
+      resource: tasks
+      input: "{{ body }}"
+
+  - id: update-task
+    method: PATCH
+    path: /tasks/{id}
+    action:
+      type: collection.update
+      resource: tasks
+      key: "{{ path.id }}"
+      merge: true
+      input: "{{ body }}"
+
+  - id: delete-task
+    method: DELETE
+    path: /tasks/{id}
+    action:
+      type: collection.delete
+      resource: tasks
+      key: "{{ path.id }}"

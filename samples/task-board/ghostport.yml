@@ -1,0 +1,25 @@
+version: 1
+
+api:
+  name: task-board
+  description: A task board with stored records and a closed scenario
+
+server:
+  host: 127.0.0.1
+  port: 8090
+
+management:
+  host: 127.0.0.1
+  port: 8091
+
+include:
+  routes:
+    - routes/tasks.yml
+  scenarios:
+    - scenarios/normal.yml
+    - scenarios/closed.yml
+  state:
+    - state/tasks.yml
+
+runtime:
+  scenario: normal
